@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Adivina el Número</title>
 </head>
 <body>
-    <div class="game-container">
-        <div id="player"></div>
-        <div class="level" id="level1"></div>
-        <div class="level" id="level2"></div>
-        <!-- Define more levels as needed -->
-    </div>
-    <script src="script.js"></script>
+    <h1>Adivina el Número</h1>
+    <p>Intenta adivinar un número entre 1 y 100.</p>
+    <input type="text" id="guessField">
+    <input type="submit" value="Adivinar" onclick="checkGuess()">
+    <p id="message"></p>
+    
+    <script>
+        // Genera un número aleatorio entre 1 y 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        
+        // Inicializa el número de intentos
+        let attempts = 0;
+        
+        // Función para comprobar el intento
+        function checkGuess() {
+            const guess = parseInt(document.getElementById("guessField").value);
+            attempts++;
+            if (guess === randomNumber) {
+                document.getElementById("message").textContent = `¡Felicidades! Adivinaste el número ${randomNumber} en ${attempts} intentos.`;
+            } else if (guess < randomNumber) {
+                document.getElementById("message").textContent = "El número es más alto. Intenta de nuevo.";
+            } else {
+                document.getElementById("message").textContent = "El número es más bajo. Intenta de nuevo.";
+            }
+        }
+    </script>
 </body>
 </html>
